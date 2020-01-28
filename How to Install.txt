@@ -1,0 +1,11 @@
+===========================
+ HOW TO INSTALL
+===========================
+1. Upload all files from whmcs folder to your root folder.
+2. Rename configuration.php.new to configuration.php
+3. visit yourwebsite and install the script.
+
+  Use this License Code : b6ffb6699450271d58b12a01c1e6c5a2
+
+This script is only avaiable for educational and experimental purpose only Administration is not
+taking responsibility for its content.

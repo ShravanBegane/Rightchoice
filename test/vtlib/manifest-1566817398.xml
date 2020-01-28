@@ -1,0 +1,29 @@
+<?xml version='1.0'?>
+<module>
+<exporttime>2019-08-26 11:03:18</exporttime>
+<name>Support</name>
+<label>Support</label>
+<parent>Support</parent>
+<dependencies>
+<vtiger_version>7.1.0</vtiger_version>
+</dependencies>
+<tables>
+<table>
+<name>vtiger_support</name>
+<sql><![CDATA[CREATE TABLE `vtiger_support` (
+  `supportid` int(11) NOT NULL,
+  `supportno` varchar(100) DEFAULT NULL,
+  `support_tks_name` varchar(20) DEFAULT NULL,
+  `tags` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`supportid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+</table>
+<table>
+<name>vtiger_supportcf</name>
+<sql><![CDATA[CREATE TABLE `vtiger_supportcf` (
+  `supportid` int(11) NOT NULL,
+  PRIMARY KEY (`supportid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+</table>
+<table>
+<name>vtiger_support_user_field</name>

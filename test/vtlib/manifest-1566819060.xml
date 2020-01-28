@@ -1,0 +1,29 @@
+<?xml version='1.0'?>
+<module>
+<exporttime>2019-08-26 11:31:00</exporttime>
+<name>Emailmarketing</name>
+<label>EmailMarketing</label>
+<parent>Marketing</parent>
+<dependencies>
+<vtiger_version>7.1.0</vtiger_version>
+</dependencies>
+<tables>
+<table>
+<name>vtiger_emailmarketing</name>
+<sql><![CDATA[CREATE TABLE `vtiger_emailmarketing` (
+  `emailmarketingid` int(11) NOT NULL,
+  `emailmarketingno` varchar(100) DEFAULT NULL,
+  `emailmarketing_tks_firstname` varchar(255) DEFAULT NULL,
+  `tags` varchar(1) DEFAULT NULL,
+  PRIMARY KEY (`emailmarketingid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+</table>
+<table>
+<name>vtiger_emailmarketingcf</name>
+<sql><![CDATA[CREATE TABLE `vtiger_emailmarketingcf` (
+  `emailmarketingid` int(11) NOT NULL,
+  PRIMARY KEY (`emailmarketingid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+</table>
+<table>
+<name>vtiger_emailmarketing_user_field</name>

@@ -1,0 +1,40 @@
+BEGIN:VCALENDAR
+PRODID:-//Google Inc//Google Calendar 70.9054//EN
+VERSION:2.0
+CALSCALE:GREGORIAN
+METHOD:REQUEST
+BEGIN:VEVENT
+DTSTART:20190605T203000Z
+DTEND:20190605T210000Z
+DTSTAMP:20190603T214136Z
+ORGANIZER;CN=ccgatewood@saasmax.com:mailto:ccgatewood@saasmax.com
+UID:oorb459bavnr049dk0u3uibgf0@google.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;RSVP=TRUE
+ ;CN=jason@my360crm.com;X-NUM-GUESTS=0:mailto:jason@my360crm.com
+ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=ACCEPTED;RSVP=TRUE
+ ;CN=ccgatewood@saasmax.com;X-NUM-GUESTS=0:mailto:ccgatewood@saasmax.com
+X-MICROSOFT-CDO-OWNERAPPTID:-335639908
+CREATED:20190603T214134Z
+DESCRIPTION:Event Name: Hey Clint! Let's Catch UP\n\nClinton's Meeting \n\n
+ Please join my meeting from your computer\, tablet or smartphone. \nhttps:/
+ /www.gotomeet.me/ClintonGatewood \nYou can also dial in using your phone\n\
+ nLocation: https://www.gotomeet.me/ClintonGatewood\n\nPhone number: 0447497
+ 453\nEmail address for additional attendee: Gopi@my360crm.com\n\nNeed to ma
+ ke changes to this event?\nCancel: https://calendly.com/cancellations/AGB53
+ UBQ7K7AY2HI\nReschedule: https://calendly.com/reschedulings/AGB53UBQ7K7AY2H
+ I\n\nPowered by Calendly.com\n\n\n-::~:~::~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~
+ :~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~::-\nPlease do not edit this sec
+ tion of the description.\n\nView your event at https://www.google.com/calen
+ dar/event?action=VIEW&eid=b29yYjQ1OWJhdm5yMDQ5ZGswdTN1aWJnZjAgamFzb25AbXkzN
+ jBjcm0uY29t&tok=MjIjY2NnYXRld29vZEBzYWFzbWF4LmNvbWU3MDk0MTJjZDQ4OGI2ZmNmOTE
+ 0MTQyNmIyOTJjM2FiN2MzYThmMDg&ctz=America%2FNew_York&hl=en&es=1.\n-::~:~::~:
+ ~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~:~::~:~:
+ :-
+LAST-MODIFIED:20190603T214136Z
+LOCATION:https://www.gotomeet.me/ClintonGatewood 
+SEQUENCE:0
+STATUS:CONFIRMED
+SUMMARY:Jason Kann and Clinton Gatewood
+TRANSP:OPAQUE
+END:VEVENT
+END:VCALENDAR

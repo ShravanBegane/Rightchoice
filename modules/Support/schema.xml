@@ -1,0 +1,17 @@
+<?xml version='1.0'?>
+<schema>
+	<tables>
+		<table>
+			<name>vtiger_support</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_support` (`supportid` int(11) NOT NULL, `supportno` varchar(100) default NULL, `support_tks_name` varchar(20) default NULL   , PRIMARY KEY (`supportid`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_supportcf</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_supportcf` (`supportid` int(11) NOT NULL, PRIMARY KEY (`supportid`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+		<table>
+			<name>vtiger_support_user_field</name>
+			<sql><![CDATA[CREATE TABLE `vtiger_support_user_field` (`recordid` int(25) NOT NULL, `userid` int(25) NOT NULL, `starred` varchar(100) default NULL , KEY (`vtiger_support_user_field`) ) ENGINE=InnoDB DEFAULT CHARSET=utf8]]></sql>
+		</table>
+	</tables>
+</schema>
