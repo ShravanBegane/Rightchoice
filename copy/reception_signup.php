@@ -1,5 +1,5 @@
 <?php
-error_reporting(0);
+// error_reporting(1);
 require_once('../google/settings.php');
 require_once('../google/google-login-api.php');
 
@@ -23,7 +23,7 @@ if(isset($_GET['code'])) {
 
 include("header.php");
 
-error_reporting(0);
+// error_reporting(1);
 
 if(isset($_POST['plan']))
 { 
@@ -36,7 +36,10 @@ if(isset($_POST['plan']))
 ?>
 
 
-    <div id="image" style="display:none;"><img class="img img-responsive" src="loading.gif" /></div>
+    <div id="image" style="display:none;">
+    	<!-- <img class="img img-responsive" src="resources/img/RIGHT-CHOICE-NEW-LOGO-1.jpg"> -->
+    	<img class="img img-responsive" src="loading.gif" />
+    </div>
     <div id="welcomeDiv" style="display:none;" class="answer_list" ></div>
     <form class="login-form" id="login-form" style="display:block;" action="reception_signup.php">
         <input type="text" readonly placeholder="Plan" required name="plan" id="plan" value="<?php echo $_SESSION['plan']; ?>"  />
@@ -45,10 +48,11 @@ if(isset($_POST['plan']))
         <input type="text" placeholder="Last Name" required name="lastname" id="lastname" />
         <input type="text" placeholder="Interested In" required="" name="business_category" id="business_category" readonly="" value="My360Reception">       
         <input type="mobile" placeholder="Mobile Number" required name="mobile" id="mobile" /><div id="errmsg" style="color:red;"></div>
-        <input type="email" placeholder="Email" required name="email" value="<?= $user_info['email'] ?> <?php echo $_SESSION['EMAIL']; ?>" id="email" /><div id="status"></div>
-        <div id="emailsuccess" style="color:green"></div>
+        <input type="email" placeholder="Email" required name="email" value="<?= $user_info['email'] ?> <?php echo $_SESSION['EMAIL']; ?>" id="email" />
+        <!-- <div id="status"></div> -->
+        <!-- <div id="emailsuccess" style="color:green"></div> -->
 	<div id="emailerror" style="color:red"></div>
-	<div id="status"></div>
+	<!-- <div id="status"></div> -->
 
 	<input type="password" placeholder="password" required name="password" id="password" />
 		
@@ -59,29 +63,31 @@ if(isset($_POST['plan']))
 		</a><br/>
 
 <?php 
-include_once '../facebook/vendor/autoload.php';
-include_once '../facebook/src/Facebook/Facebook.php';
-$fb = new Facebook\Facebook([
-  'app_id' => '417282905741982', // Replace {app-id} with your app id
-  'app_secret' => 'ec0a60328e270585d7b273b0082c6cc0',
-  'default_graph_version' => 'v3.2',
-  ]);
+// include_once '../facebook/vendor/autoload.php';
+// include_once '../facebook/src/Facebook/Facebook.php';
 
-$helper = $fb->getRedirectLoginHelper();
+// $fb = new Facebook\Facebook([
+//   'app_id' => '417282905741982', // Replace {app-id} with your app id
+//   'app_secret' => 'ec0a60328e270585d7b273b0082c6cc0',
+//   'default_graph_version' => 'v3.2',
+//   ]);
 
-$permissions = ['email']; // Optional permissions
-$_SESSION['loginUrl'] = $helper->getLoginUrl('https://internal.my360crm.com/facebook/fb-callback.php', $permissions);
-//echo $_SESSION['loginUrl'];
+// // echo "Session [after include]: Yes";
+// $helper = $fb->getRedirectLoginHelper();
+// // echo "Session [helper]:".$helper;
 
-echo '<a href="' . htmlspecialchars($_SESSION['loginUrl']) . '">
-<img src="facebook.png" style="padding-top: 10px;"></a>';
+// $permissions = ['email']; // Optional permissions
+// $_SESSION['loginUrl'] = $helper->getLoginUrl('https://internal.my360crm.com/facebook/fb-callback.php', $permissions);
+// // echo "Session [LoginURL]:".$_SESSION['loginUrl'];
+
+// echo '<a href="' . htmlspecialchars($_SESSION['loginUrl']) . '">
+// <img src="facebook.png" style="padding-top: 10px;"></a>';
 
 ?>
 
 
 
 </form>
-
 
  
 <script>
@@ -110,56 +116,56 @@ $("#mobile").keypress(function (e)
 <script>
     $(document).ready(function(){
     // check change event of the text field
-    $("#email").keyup(function()
-	{
+ //    $("#email").keyup(function()
+	// {
     
-		$('span.error-keyup-7').remove();
-		var inputVal = $(this).val();
-		var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-		if(!emailReg.test(inputVal)) 
-		{
-			$(this).after('<span class="error error-keyup-7" style="color:red">Invalid Email Format.</span>');
-			document.getElementById("submit").disabled=true;
-			$("#ptag").css("display","none");
+	// 	$('span.error-keyup-7').remove();
+	// 	var inputVal = $(this).val();
+	// 	var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+	// 	if(!emailReg.test(inputVal)) 
+	// 	{
+	// 		$(this).after('<span class="error error-keyup-7" style="color:red">Invalid Email Format.</span>');
+	// 		document.getElementById("submit").disabled=true;
+	// 		$("#ptag").css("display","none");
 
 			
-		}
-		else 
-		{
-			// get text username text field value
-			var username = $("#email").val();
+	// 	}
+	// 	else 
+	// 	{
+	// 		// get text username text field value
+	// 		var username = $("#email").val();
 			
-			// check username name only if length is greater than or equal to 3
-			if(username.length >= 3)
-			{
-			// check username
-			$.post("email/emailverify.php", {username: username}, function(data, status)
-			{
-				if(data != "Email Address is valid.")
-				{	
-					document.getElementById("submit").disabled = true;
-					$("#ptag").css("display","none");
-					$("#emailerror").html(data);
-					$("#emailsuccess").css("display","none");
-					document.getElementById("emailsuccess").style.display = "none";
-					console.log(data);
-				}
-				else
-				{
-					document.getElementById("submit").disabled=false;
-					$("#ptag").css("display","block");
-					document.getElementById("emailerror").style.display = "none";
-					$("#emailsuccess").html(data);
-					console.log(data);
+	// 		// check username name only if length is greater than or equal to 3
+	// 		if(username.length >= 3)
+	// 		{
+	// 		// check username
+	// 		$.post("email/emailverify.php", {username: username}, function(data, status)
+	// 		{
+	// 			if(data != "Email Address is valid.")
+	// 			{	
+	// 				document.getElementById("submit").disabled = true;
+	// 				$("#ptag").css("display","none");
+	// 				$("#emailerror").html(data);
+	// 				$("#emailsuccess").css("display","none");
+	// 				document.getElementById("emailsuccess").style.display = "none";
+	// 				console.log(data);
+	// 			}
+	// 			else
+	// 			{
+	// 				document.getElementById("submit").disabled=false;
+	// 				$("#ptag").css("display","block");
+	// 				document.getElementById("emailerror").style.display = "none";
+	// 				$("#emailsuccess").html(data);
+	// 				console.log(data);
 
 
-				}
+	// 			}
 				
-			});
-			}		
-		}
+	// 		});
+	// 		}		
+	// 	}
 	
-    });
+ //    });
     });
 </script>
 
@@ -266,5 +272,4 @@ if(firstname=='')
     });
     });
 </script>
-
 <?php include("footer.php"); ?>

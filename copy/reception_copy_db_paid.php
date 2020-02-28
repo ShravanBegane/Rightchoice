@@ -2,6 +2,14 @@
 
 include("settings.php"); 
 
+// include("server_splitter_init.php");
+
+   // $path = $_SERVER['DOCUMENT_ROOT'];
+   // $path .= "/copy/crmapi/server_splitter.php";
+
+include('crmapi/server_splitter.php'); 
+   
+
 
 
 			$firstname = $_POST['firstname'];
@@ -28,7 +36,7 @@ include("settings.php");
 			
 			$folder_path = "website/reception/".$plan."/";
 			$path = '../'.$folder_path.$companynamerename.'/';
-			$url_link = "https://internal.my360crm.com/".$folder_path.$renamed_company_name.'/';
+			$url_link = "https://dev.rightchoice.io/".$folder_path.$renamed_company_name.'/';
 
 			
 			/* Password Encryption for inserting to vtiger_users */
@@ -39,29 +47,58 @@ include("settings.php");
 			$user_hash = md5($newpassword);
 			//echo $newpassword;
 			/* Password Encryption for inserting to vtiger_users */
-			$DB_DST_NAME = "my360crm_reception_".$plan."_".$renamed_company_name;
-			//echo "URL : ".$url;
+			$DB_DST_NAME = "rightchoice_reception_".$plan."_".$renamed_company_name;
+			// echo "URL : ".$url; die;
 			
+			$inputs = [
+					'operation' => 'create',
+					'module' => 'Reception',
+					'req_type' => 'post',
+					'patch_details' => [
+						'category' => 'reception',
+						'action_type' => 'signup',
+						'patched_name' =>	$renamed_company_name,
+						'orignal_name' => $company_name,
+						'email'=> $email,
+						'user_hash' => $user_hash,
+						'password' => $newpassword,
+						'mobile' => $mobile,		
+						'db_name' => $DB_DST_NAME,
+						'plan' => $plan
+						]
+				];
 
-			
+			$inputs_in_json = json_encode($inputs);
+
+						// echo $inputs_in_json; die;
 
 		if($plan == "Free")
-		{
-			
-				
+		{	
+
+				// $test_flag = true;
 				// Create database
 				$sql = 'CREATE DATABASE ' . $DB_DST_NAME . '';
 
+				// if($test_flag == true)
 				if ($link->query($sql) === TRUE)
 				{
+					$server_splitter_obj = new server_splitter_init();
+
+					if($split_server):
+						// print_r(json_encode($inputs));
+						$server_splitter_obj->init($inputs);
+						send_email($logo_url,$firstname,$url_link,$email,$password);
+						oppurtunities_api($service_url,$url,$firstname,$lastname,$business_category,$plan,$company_name,$url_link,$email,$mobile,$password,$renamed_company_name);
+					else:	
 						//echo "Database ". $DB_DST_NAME ." created successfully";
 						$filename = '../'.$folder_path.$sql_name;
 						//echo $filename;echo "<br/>";
 
 						import_database($filename,$DB_DST_NAME,$email,$company_name,$user_hash,$newpassword);
-						rename_folder($folder_path,$renamed_company_name,$plan);	
+						rename_folder_init($folder_path,$renamed_company_name,$plan);	
 						send_email($logo_url,$firstname,$url_link,$email,$password);
-						oppurtunities_api($service_url,$url,$firstname,$lastname,$business_category,$plan,$company_name,$url_link,$email,$mobile,$password);
+						oppurtunities_api($service_url,$url,$firstname,$lastname,$business_category,$plan,$company_name,$url_link,$email,$mobile,$password,$renamed_company_name);
+					endif;
 				
 				}	
 		
@@ -129,26 +166,57 @@ if ($con->connect_errno)
 	
 }
 
+/**
+	[Func Author: Manoj Hansda]
+	[Created: 27/02/2020]
+	[Edits: 
+		'Name'=> 'Date' => 'Desc',
+	]
+	[Desc: Check File Permissions ]
+	@returns : (bool)
+	@params : full file path
+**/
+function writePermissionCheck($file){
+	if(is_writable($file)){
+		return true;
+	}else{
+		return false;
+	}
+}
 
+/**
+	[Func Author: Manoj Hansda]
+	[Created: 27/02/2020]
+	[Edits: 
+		'Name'=> 'Date' => 'Desc',
+	]
+	[Desc: Change File Permissions to 777 ]
+	@returns : (bool)
+	@params : full file path
+**/
+function writePermissionEsclate($file){
 
-function rename_folder($folder_path,$renamed_company_name,$plan)
-{
-	//get list of folders in directory			
-	$dir = "../".$folder_path;
-	//echo $dir;echo "<br/>";
-	
-	$a = glob($dir.'crm*');
+	$result=shell_exec("chmod 777 ".$file);
 
-	// Rename the folder		
-	rename($a[0],$dir."$renamed_company_name");
-	$application_unique_key1 = md5($renamed_company_name);
-	//exit();
+	if($result):
+		return true;
+	else:
+		return false;
+	endif;
 
-	if(file_exists($dir.$renamed_company_name)) 
-	{
-		//Rewrite the config.inc.php file
-		//echo "TEST PASSED";
-		$file = "../$folder_path$renamed_company_name/config.inc.php";
+}
+
+/**
+	[Func Author: Manoj Hansda]
+	[Created: 27/02/2020]
+	[Edits: 
+		'Name'=> 'Date' => 'Desc',
+	]
+	[Desc: Rename the Dir ]
+	@returns (null)
+	@params : full file path, write contents
+**/
+function rename_folder($folder_path,$renamed_company_name,$plan,$file){
 		$file_contents = file_get_contents($file);
 
 		$fh = fopen($file, "w");
@@ -157,6 +225,56 @@ function rename_folder($folder_path,$renamed_company_name,$plan)
 		$file_contents = str_replace("ukey1",$application_unique_key1,$file_contents);
 		fwrite($fh, $file_contents);
 		fclose($fh);
+}
+
+/**
+	[Func Author: Manoj Hansda]
+	[Created: 27/02/2020]
+	[Edits:
+		'Name'=> 'Date' => 'Desc'
+	 ]
+	[Desc: Initiate Folder Rename Process ]
+	@returns (null)
+	@params : write contents
+**/
+function rename_folder_init($folder_path,$renamed_company_name,$plan)
+{
+	//get list of folders in directory			
+	$dir = "../".$folder_path;
+	//echo $dir;echo "<br/>";
+	$file = "../$folder_path$renamed_company_name/config.inc.php";
+
+	$a = glob($dir.'crm*');
+
+	// Rename the folder		
+	rename($a[0],$dir."$renamed_company_name");
+	$application_unique_key1 = md5($renamed_company_name);
+	//exit();
+
+	$result=shell_exec("chmod 777 ".$dir.$renamed_company_name);
+	
+
+	if(file_exists($dir.$renamed_company_name)) 
+	{
+
+		if(writePermissionCheck($file)):
+			//Rewrite the config.inc.php file
+			//echo "TEST PASSED";	
+
+			// print_r($file); die;
+			rename_folder($folder_path,$renamed_company_name,$plan,$file);
+			// $file_contents = file_get_contents($file);
+
+			// $fh = fopen($file, "w");
+			// $file_contents = str_replace("company_name",$renamed_company_name,$file_contents);
+			// $file_contents = str_replace("plan",$plan,$file_contents);
+			// $file_contents = str_replace("ukey1",$application_unique_key1,$file_contents);
+			// fwrite($fh, $file_contents);
+			// fclose($fh);
+		else:
+			writePermissionEsclate($file);
+			rename_folder($folder_path,$renamed_company_name,$plan,$file);
+		endif;
 		
 	}					
 						
@@ -167,26 +285,26 @@ function send_email($logo_url,$firstname,$url_link,$email,$password)
 {											
 	require('phpmailer/mail.php');
 	$mail->addAddress($email);     // Add a recipient 
-	$mail->Subject = "Login Details from My360CRM";
+	$mail->Subject = "Login Details from Right Choice";
 	$mail->Body = "<html>
 	<head>
-	<title>Login Details from My360CRM </title>
+	<title>Login Details from Right Choice </title>
 	</head>
 	<body style='width:600px; margin:20px auto; border:1px solid #000;'>
 	<div style=' padding:20px;'>
 	<div><img src='".$logo_url."' style='height:100px'></a></div>
-	<h1 style='font-size:18px; font-family:Arial, Helvetica, sans-serif; background:#0a73ba; padding:10px; color:#FFF; font-weight:normal; border-left:10px solid #000; margin-top:20px;'>My360CRM</h1>
+	<h1 style='font-size:18px; font-family:Arial, Helvetica, sans-serif; background:#0a73ba; padding:10px; color:#FFF; font-weight:normal; border-left:10px solid #000; margin-top:20px;'>Right Choice</h1>
 	<div style=' font-family:'Comic Sans MS', cursive;'>
 	<p style='font-size:18px;'>Hi ".$firstname."</p> 
-	<p style='font-size:18px;'>Thank you for registering for your My360CRM. </p>
-	<p style='font-size:18px;'>Your Dashbaord link is  '".$baseurl."'</p>
+	<p style='font-size:18px;'>Thank you for registering for your Right Choice. </p>
+	<p style='font-size:18px;'>Your Dashbaord link is  '".$url_link."'</p>
 	<p style='font-size:18px;'>Login Details:</p>
 	<p style='font-size:18px;'>Email: ".$email."</p>
 	<p style='font-size:18px;'>Password: ".$password."</p>
 	</div>
 	<div style=' font-family:'Comic Sans MS', cursive;'></div>
 					<p><b>Thanks & Regards</b></p>
-	<p><b> https://my360crm.com </b></p>
+	<p><b> https://rightchoice.io </b></p>
 	</div>
 	</body>
 	</html>";
@@ -204,15 +322,21 @@ function send_email($logo_url,$firstname,$url_link,$email,$password)
 
 
 
-function oppurtunities_api($service_url,$url,$company_name,$firstname,$lastname,$business_category,$plan,$url_link,$email,$mobile,$password)
+function oppurtunities_api($service_url,$url,$company_name,$firstname,$lastname,$business_category,$plan,$url_link,$email,$mobile,$password,$renamed_company_name)
 {
-	/* echo "URL:".$url;
-	echo $service_url; */
-	$contents = file_get_contents($url);
-	$clima=json_decode($contents);
-	/* var_dump($clima);
 
-	echo "Success:". $clima->success; */
+	$new_g_url = 'http://dev-reception.rightchoice.io/reception/Free/'.$renamed_company_name;
+	// $new_g_url = 'http://dev-reception.rightchoice.io/reception/'.ucfirst($plan).'/'.$renamed_company_name;
+	// echo $url_link; die;
+	 // echo "URL:".$url; die;
+	// echo $service_url; 
+	// die;
+	$contents = file_get_contents($url);
+	// print_r($contents); die;
+	$clima=json_decode($contents);
+	//  var_dump($clima);
+
+	// echo "Success:". $clima->success; die;
 
 	if($clima->success == 1)
 	{
@@ -272,10 +396,12 @@ function oppurtunities_api($service_url,$url,$company_name,$firstname,$lastname,
 		}
 		else
 		{
+
+			// http://dev.rightchoice.io/website/reception/Free/200226181403FreeC
 			echo "<div class='alert alert-success' id='success_message'>
 					  <strong>Success!</strong> Your request for ".$business_category." - Reception CRM trial has been received, We will set up your free trial shortly . 
 				  </div>
-				  <div class='col-md-12'><a href='https://internal.my360crm.com/copy/signin.php'> Click here to Sign In </a></div>
+				  <div class='col-md-12'><a href='".$new_g_url."'> Click here to Sign In </a></div>
 				
 				";
 

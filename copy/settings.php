@@ -8,7 +8,7 @@ session_start();
 include_once('../WSClient.php');
 include("../xmlapi.php"); 
 include("../config.inc.php"); 
-$site_URL = "https://internal.my360crm.com/";	
+$site_URL = "https://dev.rightchoice.io/";	
 $crmusername = "superadmin";
 $crmpassword= "nAnNzKHH35z4lSd";
 $service_url = $site_URL."webservice.php";

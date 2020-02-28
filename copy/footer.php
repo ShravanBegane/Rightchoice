@@ -383,10 +383,12 @@ border-color: #ccc;
 
 <footer class="app-footer">
   <p>
-    Powered by My360CRM - &nbsp;&nbsp;© 2019&nbsp;&nbsp;|
-    <a href="//my360crm.urldiary.com" target="_blank">My360CRM</a>&nbsp;|&nbsp;
+    Powered by Right Choice - &nbsp;&nbsp;© <?=date("Y");?>&nbsp;&nbsp;|
+    <a href="https://rightchoice.io/" target="_blank">Right Choice</a>&nbsp;|&nbsp;
     <a href="#" target="_blank">Privacy Policy</a>
   </p>
 </footer>
+
+HI
 </body>
 </html>

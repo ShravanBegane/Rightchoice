@@ -27,7 +27,7 @@ $url = $service_url."?operation=getchallenge&username=".$username."&password=".$
 			}else if($business_category == "My360Register"){
 			 $api_url = "https://register.my360crm.com/copy/crmapi/create_crm.php";
 			}else if($business_category == "My360Reception"){
-			 $api_url = "https://reception.my360crm.com/copy/crmapi/create_crm.php";
+			 $api_url = "http://dev-reception.rightchoice.io/copy/crmapi/create_crm.php";
 			}
 
 

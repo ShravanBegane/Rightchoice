@@ -1,3 +1,10 @@
+<?php
+
+    $base_url ="https://dev.rightchoice.io/";
+
+    include('config.inc.php');
+?>
+
 <head>
   <title>Pricing Table</title>
   <meta charset="utf-8">
@@ -115,7 +122,7 @@
                 <h5 class="manage2">RightTrack</h5> 
                 <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
                 <div class="form1">
-                <form target="_blank" action="https://internal.rightchoice.io/copy/capture_signup.php"  method="post">
+                <form target="_blank" action="<?= $internal_url;?>copy/capture_signup.php"  method="post">
             		<input name="plan" class="free2" type="hidden" value="Free" />
             		<input class="free_btn" type="submit" value="Start Now Free" />
     		    </form>
@@ -169,7 +176,7 @@
                 <h5 class="manage2">My360Track</h5> 
                 <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
                 <div class="form1">
-                <form target="_blank" action="https://internal.rightchoice.io/copy/capture_signup.php"  method="post">
+                <form target="_blank" action="<?= $internal_url;?>copy/capture_signup.php"  method="post">
             		<input name="plan" class="free2" type="hidden" value="Small" />
             		<input class="small_btn" type="submit" value="Sign Up Now" />
     		    </form>
@@ -225,7 +232,7 @@
                 <h5 class="manage2">RightTrack</h5> 
                 <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
                 <div class="form1">
-                  <form target="_blank" action="https://internal.rightchoice.io/copy/capture_signup.php"  method="post">
+                  <form target="_blank" action="<?= $internal_url;?>copy/capture_signup.php"  method="post">
             		<input name="plan" class="free2" type="hidden" value="Medium" />
             		<input class="medium_btn" type="submit" value="Sign Up Now" />
     		    </form>
@@ -279,7 +286,7 @@
                 <h5 class="manage2">RightTrack</h5> 
                 <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
                 <div class="form1">
-                  <form target="_blank" action="https://internal.rightchoice.io/copy/capture_signup.php"  method="post">
+                  <form target="_blank" action="<?= $internal_url;?>copy/capture_signup.php"  method="post">
             		<input name="plan" class="free2" type="hidden" value="Large" />
             		<input class="large_btn" type="submit" value="Sign Up Now" />
     		    </form>
@@ -359,7 +366,7 @@
                  <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
                  <!--<h3>Free</h3>-->
                  <div class="form1">
-                     <form target="_blank" action="https://internal.rightchoice.io/copy/business_signup.php"  method="post">
+                     <form target="_blank" action="<?= $base_url;?>copy/business_signup.php"  method="post">
                 		<input name="plan" class="free2" type="hidden" value="Free" />
                 		<input class="free_btn" type="submit" value="Start Now Free" />
     		        </form>
@@ -387,7 +394,7 @@
                 <h5 class="manage2">RightTrack</h5> 
                 <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
                   <div class="form1">
-                      <form target="_blank" action="https://internal.rightchoice.io/copy/business_signup.php"  method="post">
+                      <form target="_blank" action="<?= $base_url;?>copy/business_signup.php"  method="post">
                     		<input name="plan" class="free2" type="hidden" value="Small" />
                     		<input class="small_btn" type="submit" value="Sign Up Now" />
     		           </form>
@@ -417,7 +424,7 @@
                   <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
                  <!--<h3>Medium</h3>-->
                  <div class="form1">
-                     <form target="_blank" action="https://internal.rightchoice.io/copy/business_signup.php"  method="post">
+                     <form target="_blank" action="<?= $base_url;?>copy/business_signup.php"  method="post">
                     		<input name="plan" class="free2" type="hidden" value="Medium" />
                     		<input class="medium_btn" type="submit" value="Sign Up Now" />
     		          </form>
@@ -448,7 +455,7 @@
                  <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
                  <!--<h3>Large</h3>-->
                  <div class="form1">
-                     <form target="_blank" action="https://internal.rightchoice.io/copy/business_signup.php"  method="post">
+                     <form target="_blank" action="<?= $base_url;?>copy/business_signup.php"  method="post">
                     		<input name="plan" class="free2" type="hidden" value="Large" />
                     		<input class="large_btn" type="submit" value="Sign Up Now" />
     		           </form>
@@ -478,10 +485,209 @@
                  <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
                  <!--<h3>RightOne</h3>-->
                  <div class="form1">
-                     <form target="_blank" action="https://internal.rightchoice.io/copy/business_signup.php"  method="post">
+                     <form target="_blank" action="<?= $base_url;?>copy/business_signup.php"  method="post">
                     		<input name="plan" class="free2" type="hidden" value="RightOne" />
                     		<input class="one_btn" type="submit" value="Sign Up Now" />
     		          </form>
+
+
+                 </div>
+             </div>
+         </div>
+         
+        
+        
+     </div>
+ </section>
+ 
+
+ <hr>
+ 
+ <section>
+     <div class="container-fluid" style="width:86%;">
+         <div class="row price1">
+             <h2 class="capture3">RightReception</h2>
+             <h5 class="business1">Select any of the Business Categories based on your business operation needs <br>
+                 <a href="https://rightchoice.io/Rightcafe/" target="_blank">RightCafe</a>, 
+                 <a href="https://rightchoice.io//Righthome/" target="_blank">RightHome</a>,
+                 <a href="https://rightchoice.io//Rightclub/" target="_blank">RightClub</a>, 
+                 <a href="https://rightchoice.io//Rightgym/" target="_blank">RightGym</a>, 
+                 <a href="https://rightchoice.io//kindy/" target="_blank">RightKindly</a>, 
+                 <a href="https://rightchoice.io/Rightoffice/" target="_blank">RightOffice</a>, 
+                 <a href="https://rightchoice.io/Rightretail/" target="_blank">RightRetail</a>, 
+                 <a href="https://rightchoice.io/Rightevents/" target="_blank">RightSports/Events</a>, 
+                 <a href="#" target="_blank">Righttrade</a> 
+              </h5>
+         </div>
+         <div class="row">
+             <div class="col-md-2 basic1">
+                <h2 class="capture1">&nbsp;</h2>
+                <h4 class="capture2">&nbsp;</h4>
+                <p>Users</p>
+                <p>Records</p>
+                <p>Contacts</p>
+                <p>Storage</p>
+                <p>RightCRM(LARGE)</p>
+                <h5 class="manage1">RightManage</h5> 
+                 <p>RightShift</p>
+                 <p>RightAccess</p>
+                  <h5 class="manage1">RightMarket</h5> 
+                 <p>RightFace</p>
+                 <p>Email Marketing</p>
+                 <p>SMS Marketing</p>
+                 <p>Social Media Management</p>
+                 <p>Local Listing</p>
+                 <p>Event Management</p>
+                 <p>Reputation Management</p>
+                 <h5 class="manage1">RightTrack</h5> 
+                 <p>Track</p>
+             </div>
+             <div class="col-md-2 bg1">
+                 <h2 class="pricing_free">Free</h2>
+                 <h4 class="free1">Free Trial</h4>
+                <p>1</p>
+                 <p>1000</p>
+                 <p>Unlimited</p>
+                 <p>5GB</p>
+                 <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                 <h5 class="manage2">RightManage</h5> 
+                 <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                 <h5 class="manage2">RightMarket</h5> 
+                 <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
+                <h5 class="manage2">RightTrack</h5> 
+                 <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
+                 <!--<h3>Free</h3>-->
+                 <div class="form1">
+                     <form target="_blank" action="https://dev.rightchoice.io/copy/reception_signup.php"  method="post">
+                        <input name="plan" class="free2" type="hidden" value="Free" />
+                        <input class="free_btn" type="submit" value="Start Now Free" />
+                    </form>
+                 </div>
+             </div>
+             <div class="col-md-2 bg2">
+                 <h2 class="pricing_small">Small</h2>
+                 <h4 class="small1">$39 / month</h4>
+                 <p>5</p>
+                 <p>1000</p>
+                 <p>Unlimited</p>
+                 <p>5GB</p>
+                 <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                 <h5 class="manage2">RightManage</h5> 
+                  <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                 <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                  <h5 class="manage2">RightMarket</h5> 
+                  <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
+                <h5 class="manage2">RightTrack</h5> 
+                <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
+                  <div class="form1">
+                      <form target="_blank" action="https://dev.rightchoice.io/copy/reception_signup.php"  method="post">
+                            <input name="plan" class="free2" type="hidden" value="Small" />
+                            <input class="small_btn" type="submit" value="Sign Up Now" />
+                       </form>
+
+                 </div>
+             </div>
+             <div class="col-md-2 bg1">
+                 <h2 class="pricing_medium">Medium</h2>
+                 <h4 class="medium1">$69 / month</h4>
+                 <p>10</p>
+                 <p>5000</p>
+                 <p>Unlimited</p>
+                 <p>15GB</p>
+                 <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                 <h5 class="manage2">RightManage</h5> 
+                 <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                 <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                  <h5 class="manage2">RightMarket</h5> 
+                  <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
+                <h5 class="manage2">RightTrack</h5> 
+                  <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
+                 <!--<h3>Medium</h3>-->
+                 <div class="form1">
+                     <form target="_blank" action="https://dev.rightchoice.io/copy/reception_signup.php"  method="post">
+                            <input name="plan" class="free2" type="hidden" value="Medium" />
+                            <input class="medium_btn" type="submit" value="Sign Up Now" />
+                      </form>
+
+
+                 </div>
+             </div>
+             <div class="col-md-2 bg2">
+                 <h2 class="pricing_large">Large</h2>
+                 <h4 class="large1">$119 / month</h4>
+                 <p>20</p>
+                 <p>20000</p>
+                 <p>Unlimited</p>
+                 <p>25GB</p>
+                 <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                 <h5 class="manage2">RightManage</h5> 
+                  <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                 <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                  <h5 class="manage2">RightMarket</h5> 
+                  <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <h5 class="manage2">RightTrack</h5> 
+                 <p><i class="fa fa-close close1" aria-hidden="true"></i></p>
+                 <!--<h3>Large</h3>-->
+                 <div class="form1">
+                     <form target="_blank" action="https://dev.rightchoice.io/copy/reception_signup.php"  method="post">
+                            <input name="plan" class="free2" type="hidden" value="Large" />
+                            <input class="large_btn" type="submit" value="Sign Up Now" />
+                       </form>
+
+                 </div>
+             </div>
+             <div class="col-md-2 bg1">
+                 <h2 class="plan_one1">RightOne</h2>
+                 <h4 class="plan_one2">$279 / month</h4>
+                 <p>Unlimited</p>
+                 <p>Unlimited</p>
+                 <p>Unlimited</p>
+                 <p>Unlimited</p>
+                  <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                 <h5 class="manage2">RightManage</h5> 
+                  <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                 <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                  <h5 class="manage2">RightMarket</h5> 
+                 <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                <h5 class="manage2">RightTrack</h5> 
+                 <p><i class="fa fa-check check1" aria-hidden="true"></i></p>
+                 <!--<h3>RightOne</h3>-->
+                 <div class="form1">
+                     <form target="_blank" action="https://dev.rightchoice.io/copy/reception_signup.php"  method="post">
+                            <input name="plan" class="free2" type="hidden" value="RightOne" />
+                            <input class="one_btn" type="submit" value="Sign Up Now" />
+                      </form>
 
 
                  </div>

@@ -8,6 +8,7 @@
  * All Rights Reserved.
  ********************************************************************************/
 
+	// echo "Inside Webservices"; die;
 	require_once("config.php");
     /**
     * URL Verfication - Required to overcome Apache mis-configuration and leading to shared setup mode.
@@ -36,6 +37,7 @@
 	global $seclog,$log;
 	$seclog =& LoggerManager::getLogger('SECURITY');
 	$log =& LoggerManager::getLogger('webservice');
+
 
 	function getRequestParamsArrayForOperation($operation){
 		global $operationInput;
