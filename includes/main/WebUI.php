@@ -119,6 +119,7 @@ class Vtiger_WebUI extends Vtiger_EntryPoint {
 		$module = $request->getModule();
 		$qualifiedModuleName = $request->getModule(false);
 
+
 		if ($currentUser && $qualifiedModuleName) {
 			$moduleLanguageStrings = Vtiger_Language_Handler::getModuleStringsFromFile($currentLanguage,$qualifiedModuleName);
 			if(isset($moduleLanguageStrings['languageStrings'])){
@@ -153,6 +154,7 @@ class Vtiger_WebUI extends Vtiger_EntryPoint {
 				if ($this->hasLogin()) {
 					$defaultModule = vglobal('default_module');
 					$moduleModel = Vtiger_Module_Model::getInstance($defaultModule);
+					// echo $moduleModel; die;
 					if(!empty($defaultModule) && $defaultModule != 'Home' && $moduleModel && $moduleModel->isActive()) {
 						$module = $defaultModule; $qualifiedModuleName = $defaultModule; $view = 'List';
 						if($module == 'Calendar') { 

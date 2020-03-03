@@ -36,10 +36,10 @@ class server_splitter_init
 
 	protected function router($route){
 		if($route == 'Reception'):
-			$this->service_url = "http://dev-reception.rightchoice.io/rest/index.php/request";
+			$this->service_url = 'https://dev-reception.rightchoice.io/rest/index.php/request';
 			return true;
 		elseif($route == 'Business'):
-			$this->service_url = "http://dev-reception.rightchoice.io/rest/index.php/request";
+			$this->service_url = 'https://dev-reception.rightchoice.io/rest/index.php/request';
 			return true;
 		else:
 			return false;
@@ -77,7 +77,7 @@ class server_splitter_init
 		// }
 		// curl_close($curl);
 		$decoded = json_decode($result);
-		// print_r($result); die;
+		// print_r($decoded); die;
 		
 		if (isset($decoded->code) && $decoded->code == '200') 
 		{

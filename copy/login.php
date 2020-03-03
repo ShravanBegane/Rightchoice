@@ -11,12 +11,12 @@
 </head>
 <body>
 <div class="container">
-<h2>Login</h2>
-<form action="login1.php" method="post">
-Email: <input class="form-control" required type="text" name="user_name" id="user_name"><br>
-Password: <input class="form-control" required type="password" name="password" id="password"><br>
-<input id="submit" type="submit" name="form_submitted" class="btn btn-primary" value="Submit">
-</form>
+	<h2>Login</h2>
+	<form action="login1.php" method="post">
+		Email: <input class="form-control" required type="text" name="user_name" id="user_name"><br>
+		Password: <input class="form-control" required type="password" name="password" id="password"><br>
+		<input id="submit" type="submit" name="form_submitted" class="btn btn-primary" value="Submit">
+	</form>
 </div>
 </body>
 </html>

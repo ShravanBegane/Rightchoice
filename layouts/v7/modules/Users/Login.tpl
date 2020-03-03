@@ -255,6 +255,7 @@
 						<div class="group">
 							<input id="password" type="password" name="password" placeholder="Password">
 							<span class="bar"></span>
+							<input id="form_submitted" type="hidden" name="form_submitted" value="true">
 						
 						</div>
 						<div class="group">

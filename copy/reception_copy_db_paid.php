@@ -38,6 +38,8 @@ include('crmapi/server_splitter.php');
 			$path = '../'.$folder_path.$companynamerename.'/';
 			$url_link = "https://dev.rightchoice.io/".$folder_path.$renamed_company_name.'/';
 
+			$url_link_split = $crm_base_url.'reception/'.$plan.'/'.$renamed_company_name.'/';
+
 			
 			/* Password Encryption for inserting to vtiger_users */
 			$salt = substr($email, 0, 2);
@@ -79,34 +81,45 @@ include('crmapi/server_splitter.php');
 				// Create database
 				$sql = 'CREATE DATABASE ' . $DB_DST_NAME . '';
 
-				// if($test_flag == true)
-				if ($link->query($sql) === TRUE)
-				{
-					$server_splitter_obj = new server_splitter_init();
+				$server_splitter_obj = new server_splitter_init();
 
+					// echo $split_server; die;
 					if($split_server):
 						// print_r(json_encode($inputs));
 						$server_splitter_obj->init($inputs);
-						send_email($logo_url,$firstname,$url_link,$email,$password);
-						oppurtunities_api($service_url,$url,$firstname,$lastname,$business_category,$plan,$company_name,$url_link,$email,$mobile,$password,$renamed_company_name);
-					else:	
-						//echo "Database ". $DB_DST_NAME ." created successfully";
-						$filename = '../'.$folder_path.$sql_name;
-						//echo $filename;echo "<br/>";
+						send_email($logo_url,$firstname,$url_link_split,$email,$password);
+						oppurtunities_api($service_url,$url,$firstname,$lastname,$business_category,$plan,$company_name,$url_link_split,$email,$mobile,$password,$renamed_company_name);
+					else:
 
-						import_database($filename,$DB_DST_NAME,$email,$company_name,$user_hash,$newpassword);
-						rename_folder_init($folder_path,$renamed_company_name,$plan);	
-						send_email($logo_url,$firstname,$url_link,$email,$password);
-						oppurtunities_api($service_url,$url,$firstname,$lastname,$business_category,$plan,$company_name,$url_link,$email,$mobile,$password,$renamed_company_name);
-					endif;
-				
-				}	
+					// if($test_flag == true)
+					if ($link->query($sql) === TRUE)
+					{
+							
+							//echo "Database ". $DB_DST_NAME ." created successfully";
+							$filename = '../'.$folder_path.$sql_name;
+							//echo $filename;echo "<br/>";
+
+							import_database($filename,$DB_DST_NAME,$email,$company_name,$user_hash,$newpassword);
+							rename_folder_init($folder_path,$renamed_company_name,$plan);	
+							send_email($logo_url,$firstname,$url_link,$email,$password);
+							oppurtunities_api($service_url,$url,$firstname,$lastname,$business_category,$plan,$company_name,$url_link,$email,$mobile,$password,$renamed_company_name);
+						
+					
+					}	
+				endif;
 		
 		}
 		else
 		{
-				accounts_api($service_url,$url,$company_name,$firstname,$lastname,$business_category,$plan,$url_link,$email,$mobile,$password);
-				
+				if($split_server):
+						// print_r(json_encode($inputs));
+						$server_splitter_obj->init($inputs);
+						send_email($logo_url,$firstname,$url_link_split,$email,$password);
+						oppurtunities_api($service_url,$url,$firstname,$lastname,$business_category,$plan,$company_name,$url_link_split,$email,$mobile,$password,$renamed_company_name);
+						accounts_api($service_url,$url,$company_name,$firstname,$lastname,$business_category,$plan,$url_link_split,$email,$mobile,$password);
+				else:
+						accounts_api($service_url,$url,$company_name,$firstname,$lastname,$business_category,$plan,$url_link,$email,$mobile,$password);
+				endif;
 		}		
 
 
@@ -325,7 +338,9 @@ function send_email($logo_url,$firstname,$url_link,$email,$password)
 function oppurtunities_api($service_url,$url,$company_name,$firstname,$lastname,$business_category,$plan,$url_link,$email,$mobile,$password,$renamed_company_name)
 {
 
-	$new_g_url = 'http://dev-reception.rightchoice.io/reception/Free/'.$renamed_company_name;
+	// echo $service_url; die;
+
+	// $new_g_url = 'https://dev-reception.rightchoice.io/reception/Free/'.$renamed_company_name.'/';
 	// $new_g_url = 'http://dev-reception.rightchoice.io/reception/'.ucfirst($plan).'/'.$renamed_company_name;
 	// echo $url_link; die;
 	 // echo "URL:".$url; die;
@@ -401,7 +416,7 @@ function oppurtunities_api($service_url,$url,$company_name,$firstname,$lastname,
 			echo "<div class='alert alert-success' id='success_message'>
 					  <strong>Success!</strong> Your request for ".$business_category." - Reception CRM trial has been received, We will set up your free trial shortly . 
 				  </div>
-				  <div class='col-md-12'><a href='".$new_g_url."'> Click here to Sign In </a></div>
+				  <div class='col-md-12'><a href='".$url_link."'> Click here to Sign In </a></div>
 				
 				";
 
@@ -417,6 +432,7 @@ function oppurtunities_api($service_url,$url,$company_name,$firstname,$lastname,
 
 function accounts_api($service_url,$url,$company_name,$firstname,$lastname,$business_category,$plan,$url_link,$email,$mobile,$password)
 {
+	// echo $service_url; die;
 	$contents = file_get_contents($url);
 	$clima = json_decode($contents);
 	if($clima->success == 1)

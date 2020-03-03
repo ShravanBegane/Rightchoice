@@ -82,6 +82,16 @@ $host_name = $dbconfig['db_hostname'];
 
 $split_server = true;
 
+$api_urls = [
+	'reception' => 'https://dev-reception.rightchoice.io/rest/index.php/request',
+	'business' => ''
+];
+
+
+$temp_storage['post_data'] = 'Hi';
+
+$crm_base_url = 'https://dev-reception.rightchoice.io/';
+
 
 $site_URL = 'https://dev.rightchoice.io/';
 #$site_URL = 'https://internal.rightchoice.io/';
