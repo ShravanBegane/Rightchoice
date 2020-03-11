@@ -15,7 +15,8 @@
 <body>
 <div class="login-page">
   <div class="form" >
-    <img class="img-responsive user-logo" src="https://internal.rightchoice.io/layouts/v7/resources/Images/vtiger.png">
+    <img class="img-responsive user-logo" src="resources/img/RIGHT-CHOICE-NEW-LOGO-1.jpg">
+    <hr>
     <!-- form class="register-form">
            <input type="password" placeholder="password"/>
       <input type="text" placeholder="email address"/>
@@ -202,6 +203,7 @@ body {
     padding:12px;
     background-color: #1291f9;
     font-weight:600;
+    margin-top:8%;
 }
 
 

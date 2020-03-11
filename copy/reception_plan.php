@@ -268,7 +268,7 @@
 							<hr>
 							<h1 class="c_org c_price"></h1>
 							<p class="f_small c_org">&nbsp;</p>
-							<form action="reception_signup.php" method="post">
+							<form action="reception_signup.php" method="post" target="_blank">
 							<input type="hidden" name="plan" value="Free"/>
 							<button  class="btn_line_org no_white btn_arc">Start Free Trial</button> 
 							</form>							</div>
@@ -301,7 +301,7 @@
   <span class="word">now</span> -->
 <!-- </h1> -->
 
-							<form action="reception_signup.php" method="post">
+							<form action="reception_signup.php" method="post" target="_blank">
 							<input type="hidden" name="plan" value="Small"/>
 							<button  class="btn_line_org no_white btn_arc">Signup Now</button> 
 							</form>							</div>
@@ -330,7 +330,7 @@
 								<span class="word">10 %</span>
   								<span class="word">off</span>
 							</p>
-							<form action="reception_signup.php" method="post">
+							<form action="reception_signup.php" method="post" target="_blank">
 							<input type="hidden" name="plan" value="Medium"/>
 							<button  class="btn_line_org no_white btn_arc">Signup Now</button> 
 							</form>							</div>
@@ -358,9 +358,9 @@
 								<span class="word">10 %</span>
   								<span class="word">off</span>
 							</p>
-							<form action="reception_signup.php" method="post">
+							<form action="reception_signup.php" method="post" target="_blank">
 							<input type="hidden" name="plan" value="Large"/>
-							<button  class="btn_line_org no_white btn_arc">Signup Now</button> 
+							<button target="_blank"  class="btn_line_org no_white btn_arc">Signup Now</button> 
 							</form>							</div>
 						</div>
 					</div>

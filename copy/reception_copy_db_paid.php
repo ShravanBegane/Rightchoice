@@ -8,6 +8,7 @@ include("settings.php");
    // $path .= "/copy/crmapi/server_splitter.php";
 
 include('crmapi/server_splitter.php'); 
+// include('plugins/payments/paypal/payment_processor.php');
    
 
 
@@ -111,15 +112,7 @@ include('crmapi/server_splitter.php');
 		}
 		else
 		{
-				if($split_server):
-						// print_r(json_encode($inputs));
-						$server_splitter_obj->init($inputs);
-						send_email($logo_url,$firstname,$url_link_split,$email,$password);
-						oppurtunities_api($service_url,$url,$firstname,$lastname,$business_category,$plan,$company_name,$url_link_split,$email,$mobile,$password,$renamed_company_name);
-						accounts_api($service_url,$url,$company_name,$firstname,$lastname,$business_category,$plan,$url_link_split,$email,$mobile,$password);
-				else:
-						accounts_api($service_url,$url,$company_name,$firstname,$lastname,$business_category,$plan,$url_link,$email,$mobile,$password);
-				endif;
+				accounts_api($service_url,$url,$company_name,$firstname,$lastname,$business_category,$plan,$url_link,$email,$mobile,$password);
 		}		
 
 
@@ -432,7 +425,7 @@ function oppurtunities_api($service_url,$url,$company_name,$firstname,$lastname,
 
 function accounts_api($service_url,$url,$company_name,$firstname,$lastname,$business_category,$plan,$url_link,$email,$mobile,$password)
 {
-	// echo $service_url; die;
+	// echo $url; die;
 	$contents = file_get_contents($url);
 	$clima = json_decode($contents);
 	if($clima->success == 1)
@@ -483,6 +476,9 @@ function accounts_api($service_url,$url,$company_name,$firstname,$lastname,$busi
 			}
 			else
 			{
+
+				// $PP_obj = new Payment_processor();
+				// $PP_obj->init($inputs);
 				echo 'reception_signup_payment.php';
 											   
 			}

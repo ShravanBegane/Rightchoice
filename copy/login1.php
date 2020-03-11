@@ -6,9 +6,6 @@ include("../xmlapi.php");
 include("../config.inc.php"); 
 include("db.php");
 
-print_r($_SESSION);
-echo "POST Array"; die;
-
 if(isset($_POST['form_submitted']))
 {
 
@@ -86,7 +83,7 @@ and vtiger_crmentity.deleted !=1 and vtiger_account.email1 = '$username'";
 				}
 
 			$url = $url1."?module=Users&action=Login&return_module=Users&return_action=Login&username=".$user_name."&password=".$password;
-			echo $url; die;
+			// echo $url; die;
 				// return $url;
 
 		$_REQUEST['url_test'] = $url;

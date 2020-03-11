@@ -55,8 +55,8 @@ if(isset($_POST['plan']))
 	<!-- <div id="status"></div> -->
 
 	<input type="password" placeholder="password" required name="password" id="password" />
-		
-		<button id="submit" type="button" name="submit" class="btn btn-success signup_comx1" value="Sign Up">Sign Up</button><br/><br/>
+		<br><br>
+		<button id="submit" type="button" name="submit" class="btn btn-success signup_comx1 sign_up_btn" value="Sign Up">Sign Up</button><br/><br/>
 		<button id="button" type="button" name="submit" class="signup_comx2" value="Existing User? Log In"><a href="signin.php" style="color:#000;text-decoration:none;"> Existing User? Log In</a></button>
 		<a id="login-button" href="<?= 'https://accounts.google.com/o/oauth2/auth?scope=' . urlencode('https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email') . '&redirect_uri=' . urlencode(CLIENT_REDIRECT_URL) . '&response_type=code&client_id=' . CLIENT_ID . '&access_type=online' ?>">
 			<img src="google.png"/>

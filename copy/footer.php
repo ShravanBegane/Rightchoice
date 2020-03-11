@@ -41,9 +41,9 @@
   position: relative;
   z-index: 1;
   background: #FFFFFF;
-  max-width: 340px;
-  margin: -50px auto 100px;
-  padding: 45px;
+  max-width: 360px;
+    margin: -80px auto 64px;
+    padding: 34px 34px;
   text-align: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
@@ -208,7 +208,7 @@ body {
 .signup_comx1
 {
     width: 100%;
-    box-shadow: 0px 1px 0px 1px #011c32;
+    box-shadow: 0px 4px 10px 1px #9d9d9d;
     padding:12px;
     background-color: #1291f9;
     font-weight:600;
@@ -218,10 +218,10 @@ body {
 .btn-success:hover {
     color: #fff;
     background-color: #2874f0;
-    border-color: #011c32;
+    /*border-color: #011c32;*/
 }
 .btn-success {
-    border-color: #011c32;
+    /*border-color: #011c32;*/
 }
 
 .btn-success:active:hover
@@ -258,10 +258,21 @@ body {
 }
 
 .btn-success {
-color: #fff;
-background-color: #1391F9!important;
-border-color: #011c32!important;
-box-shadow: 0px 1px 0px 1px #011c32;
+}
+
+.sign_up_btn{
+    background-color: #1391F9;
+    /*border-color: #011c32;
+    box-shadow: 0px 1px 0px 1px #011c32;*/
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 900;    
+    color: #fff;
+    font-family: 'Montserrat', sans-serif;
+}
+.sign_up_btn:hover{
+    /*letter-spacing: 6px;*/
 }
 
 /************************Shruti*****************************/
@@ -374,6 +385,11 @@ input#Large {
 background-color: #dcdcdc !important;
 border-color: #ccc;
 }
+
+.btn_buy_submit{
+  width: 80% !important;
+}
+
 </style>
 <script type="text/javascript">
   $('.message a').click(function(){
@@ -383,7 +399,7 @@ border-color: #ccc;
 
 <footer class="app-footer">
   <p>
-    Powered by Right Choice - &nbsp;&nbsp;© <?=date("Y");?>&nbsp;&nbsp;|
+    Powered by Right Choice - &nbsp;&nbsp;&copy; <?=date("Y");?>&nbsp;&nbsp;|
     <a href="https://rightchoice.io/" target="_blank">Right Choice</a>&nbsp;|&nbsp;
     <a href="#" target="_blank">Privacy Policy</a>
   </p>

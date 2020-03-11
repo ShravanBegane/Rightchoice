@@ -80,12 +80,45 @@ $dbconfigoption['ssl'] = false;
 $host_name = $dbconfig['db_hostname'];
 
 
+/**
+* Server Splitter Settings
+* Turn it to false if no server splitting required
+* @uses [true,false]
+**/
+
 $split_server = true;
 
 $api_urls = [
 	'reception' => 'https://dev-reception.rightchoice.io/rest/index.php/request',
 	'business' => ''
 ];
+
+/**
+*
+* End of Server Splitter Settings
+*
+**/
+
+
+/**
+* PG Settings
+* Turn it to live when ready for production
+* @uses [live,dev]
+**/
+
+$production_mode = 'dev';
+
+if($production_mode == 'dev'):
+	$pg_url = "https://www.sandbox.paypal.com/cgi-bin/webscr";
+	$target = "paypal";
+else:
+	$pg_url = "https://www.paypal.com/cgi-bin/webscr";
+	$target = "_top";
+endif;
+
+/**
+* End of Payment Gateway Settings
+**/
 
 
 $temp_storage['post_data'] = 'Hi';

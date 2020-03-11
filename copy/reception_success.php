@@ -2,93 +2,142 @@
 <div id="welcomeDiv" class="answer_list" >
 
 <?php
-include("settings.php");
+	include("settings.php");
+	include('crmapi/server_splitter.php'); 
 
-$firstname =  $_SESSION["firstname"] ;
-$plan =  $_SESSION["plan"] ;
-$email =  $_SESSION["email"] ;
-$business_category =  $_SESSION["business_category"];
-$password =  $_SESSION["password"];
-$company_name =  $_SESSION["company_name"];
-$companynamerename = preg_replace("/[^a-zA-Z]/", "", $company_name);
-$renamed_company_name = date("ymdHis").$companynamerename;
+	$firstname =  $_SESSION["firstname"] ;
+	$plan =  $_SESSION["plan"] ;
+	$email =  $_SESSION["email"] ;
+	$business_category =  $_SESSION["business_category"];
+	$password =  $_SESSION["password"];
+	$company_name =  $_SESSION["company_name"];
+	$companynamerename = preg_replace("/[^a-zA-Z]/", "", $company_name);
+	$renamed_company_name = date("ymdHis").$companynamerename;
 
 
-$folder_path = "website/reception/".$plan."/";
-$path = '../'.$folder_path.$companynamerename.'/';
-$url_link = $site_URL.$folder_path.$renamed_company_name.'/';
+	$folder_path = "reception/".$plan."/";
+	$path = '../'.$folder_path.$companynamerename.'/';
+	$url_link = $crm_base_url.$folder_path.$renamed_company_name.'/';
 
 /* Password Encryption for inserting to vtiger_users */
-			$salt = substr($email, 0, 2);
-			$salt = '$1$' . str_pad($salt, 9, '0');
+	$salt = substr($email, 0, 2);
+	$salt = '$1$' . str_pad($salt, 9, '0');
 
-			$newpassword = crypt($password, $salt);
-			$user_hash = md5($newpassword);
+	$newpassword = crypt($password, $salt);
+	$user_hash = md5($newpassword);
 			//echo $newpassword;
-/* Password Encryption for inserting to vtiger_users */
 
-				$DB_DST_NAME = "my360crm_reception_".$plan."_".$renamed_company_name;
-				// Create database
-				$sql = 'CREATE DATABASE ' . $DB_DST_NAME . '';
+
+	/**
+	** Parse Db Config from config.inc
+	**/
+	$db_temp = $dbconfig;
+
+
+	/* Password Encryption for inserting to vtiger_users */
+	$DB_DST_NAME = "rightchoice_reception_".$plan."_".$renamed_company_name;
+	// Create database
+	$sql = 'CREATE DATABASE ' . $DB_DST_NAME . '';	
+	//$sql = "CREATE DATABASE myDB";
+
+
+	/**
+	** @uses [renamed company name, company name, email, user hash, encrypted password, mobile, db name, plan name]
+	* Variable Prep for Split Server
+	**/
+	$inputs = [
+				'operation' => 'create',
+				'module' => 'Reception',
+				'req_type' => 'post',
+				'patch_details' => [
+					'category' => 'reception',
+					'action_type' => 'signup',
+					'patched_name' =>	$renamed_company_name,
+					'orignal_name' => $company_name,
+					'email'=> $email,
+					'user_hash' => $user_hash,
+					'password' => $newpassword,
+					'mobile' => $mobile,		
+					'db_name' => $DB_DST_NAME,
+					'plan' => $plan
+					]
+			];
+
+	$inputs_in_json = json_encode($inputs);
+
+
+	$server_splitter_obj = new server_splitter_init();
+	if($split_server):	
+		$split_result = $server_splitter_obj->init($inputs);
+		// echo "<pre>";
+		// print_r($split_result); die;			
+		send_email($logo_url,$firstname,$url_link_split,$email,$password);						
+   		patch_accounts($email,$url_link,$business_category,$db_temp);	
+			// print_r(json_encode($inputs));
+	else:
+	
+		if ($link->query($sql) === TRUE)
+		{
+			//echo "Database ". $DB_DST_NAME ." created successfully";
+			$filename = '../'.$folder_path.$sql_name;
+
 				
-				//$sql = "CREATE DATABASE myDB";
+			import_database($filename,$DB_DST_NAME,$email,$company_name,$user_hash,$newpassword);
+			rename_folder($folder_path,$renamed_company_name,$plan);	
+			send_email($logo_url,$firstname,$url_link,$email,$password);
+	   		patch_accounts($email,$url_link,$business_category,$db_temp);					
+						
+		}else{
+			
+			echo "error";
+		}
+
+	endif;
+
+/**
+* Update Account details to paid account
+**/						
+function patch_accounts($email,$url_link,$business_category,$db_temp){
+	// Create connection
+	// echo "<pre>";
+	// print_r($db_temp); die;
+
+	$conn = new mysqli($db_temp['db_server'], $db_temp['db_username'], $db_temp['db_password'],$db_temp['db_name']);
+	// Check connection
+	if ($conn->connect_error) {
+		die("Connection failed: " . $conn->connect_error);
+	} 
+	
+	
+	$sql = 'SELECT vtiger_account.`accountid` FROM `vtiger_account`,`vtiger_crmentity` ,vtiger_accountscf 
+		where vtiger_account.accountid = vtiger_accountscf.accountid
+		and vtiger_account.accountid = vtiger_crmentity.`crmid`
+		and email1 ="'.$email.'" 
+		and `vtiger_crmentity`.`deleted` = 0';
+	$result = $conn->query($sql);
+
+	if ($result->num_rows > 0) {
+		// output data of each row
+		while($row = $result->fetch_assoc()) {
+			
+			$sql = 'UPDATE vtiger_accountscf SET cf_996="Paid", cf_916="'.$url_link.'" WHERE accountid = "'.$row["accountid"].'"';
+	
+			if ($conn->query($sql) === TRUE) {
 				
-				if ($link->query($sql) === TRUE)
-				{
-					//echo "Database ". $DB_DST_NAME ." created successfully";
-					$filename = '../'.$folder_path.$sql_name;
-
-						
-						import_database($filename,$DB_DST_NAME,$email,$company_name,$user_hash,$newpassword);
-						rename_folder($folder_path,$renamed_company_name,$plan);	
-						send_email($logo_url,$firstname,$url_link,$email,$password);
-				   
-
-									// Create connection
-									$conn = new mysqli($dbconfig['db_server'], $dbconfig['db_username'], $dbconfig['db_password'],$dbconfig['db_name']);
-									// Check connection
-									if ($conn->connect_error) {
-										die("Connection failed: " . $conn->connect_error);
-									} 
-									
-									
-									$sql = 'SELECT vtiger_account.`accountid` FROM `vtiger_account`,`vtiger_crmentity` ,vtiger_accountscf 
-										where vtiger_account.accountid = vtiger_accountscf.accountid
-										and vtiger_account.accountid = vtiger_crmentity.`crmid`
-										and email1 ="'.$email.'" 
-										and `vtiger_crmentity`.`deleted` = 0';
-									$result = $conn->query($sql);
-
-									if ($result->num_rows > 0) {
-										// output data of each row
-										while($row = $result->fetch_assoc()) {
-											
-											$sql = 'UPDATE vtiger_accountscf SET cf_996="Paid", cf_916="'.$url_link.'" WHERE accountid = "'.$row["accountid"].'"';
-									
-											if ($conn->query($sql) === TRUE) {
-												
-												echo "<div class='alert alert-success' id='success_message'>
-														  <strong>Success!</strong> Your request for ".$business_category." - Reception CRM has been received, We will set up your CRM shortly . 
-													  </div>
-													  <div class='col-md-12'><a href='https://internal.my360crm.com/copy/signin.php'> Click here to Sign In </a></div>";
-													
-											} else {
-												echo "Error updating record: " . $conn->error;
-											}	
-											
-										}
-									} else {
-										echo "0 results";
-									}
-									
-									
-						}
-						else 
-						{
-							
-							echo "error";
-						}
-						
+				echo "<div class='alert alert-success' id='success_message'>
+						  <strong>Success!</strong> Your request for ".$business_category." - Reception CRM has been received, We will set up your CRM shortly . 
+					  </div>
+					  <div class='col-md-12'><a href='https://dev.rightchoice.io/copy/signin.php'> Click here to Sign In </a></div>";
+					
+			} else {
+				echo "Error updating record: " . $conn->error;
+			}	
+			
+		}
+	} else {
+		echo "0 results";
+	}
+}						
 						
 						
 function import_database($filename,$DB_DST_NAME,$email,$company_name,$user_hash,$newpassword)

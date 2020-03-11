@@ -2,15 +2,17 @@
 <html>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
   <head>
-    <title>My360CRM </title>  
+    <title>Right Choice </title>  
 </head>
 <body>
   <div class="login-page">
   <div class="form">
-    <img class="img-responsive user-logo" src="http://my360crm.urldiary.com/layouts/v7/resources/Images/vtiger.png">
+    <img class="img-responsive user-logo" src="resources/img/RIGHT-CHOICE-NEW-LOGO-1.jpg">
+    <br>
        <div id="welcomeDiv" class="answer_list" >
 		<div class='alert alert-danger' id='success_message'>
-		<strong>Error!</strong> Your payment was cancelled! . 
+    <img class="img-responsive user-logo" src="resources/img/message.png">
+		<strong>Your payment was cancelled!</strong> Please Try Again . 
 		</div>
 			</div>
      </div>
@@ -20,9 +22,21 @@
   
   @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
+body{
+
+      font-family: 'Roboto';
+}
+  div#welcomeDiv .alert {
+      font-size: 16px;
+      font-family: 'Roboto';
+      line-height: 30px;
+      background-color: #ff4700 !important;
+      color: #fff;
+  }
+
 .login-page {
-   background: url(http:my360crm.urldiary.com/copy/login_bg1.jpg);
-  width: 360px;
+   /*background: url(http:my360crm.urldiary.com/copy/login_bg1.jpg);*/
+  width: 400px;
   padding: 8% 0 0;
   margin: auto;
 }
@@ -363,8 +377,8 @@ font-size:12px;
 
 <footer class="app-footer">
   <p>
-    Powered by My360CRM - &nbsp;&nbsp;© 2019&nbsp;&nbsp;|
-    <a href="//my360crm.urldiary.com" target="_blank">My360CRM</a>&nbsp;|&nbsp;
+    Powered by Right Choice - &nbsp;&nbsp;&copy; <?=date("Y");?>&nbsp;&nbsp;|
+    <a href="https://rightchoice.io/" target="_blank">Right Choice</a>&nbsp;|&nbsp;
     <a href="#" target="_blank">Privacy Policy</a>
   </p>
 </footer>
