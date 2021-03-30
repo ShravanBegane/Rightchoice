@@ -16,34 +16,36 @@ if (isset($_POST['form_submitted']))
     //echo "<br/>";
 
 	$username = mysqli_real_escape_string($con, $username);
-	$query = "SELECT * from vtiger_potentialscf,vtiger_potential,vtiger_crmentity 
-                  where vtiger_crmentity.crmid = vtiger_potential.potentialid
-		  and vtiger_potential.potentialid = vtiger_potentialscf.potentialid
-		  and vtiger_crmentity.deleted !=1 and  cf_980 = '$username'";
-	//echo $query;
+	$query = "SELECT * from vtiger_accountscf,vtiger_account,vtiger_crmentity 
+                  where vtiger_crmentity.crmid = vtiger_account.accountid
+		  and vtiger_account.accountid = vtiger_accountscf.accountid
+		  and vtiger_crmentity.deleted !=1 and  email1 = '$username'";
+	// echo $query; die;
 
 
 	if($result = mysqli_query($con, $query))
 	{
-	     
+	     // print_r($result); die;
 	    if ($result->num_rows > 0) 
 	    {
 	    while($row = mysqli_fetch_assoc($result)) 
 	    {
-	      //$url = $row["cf_952"];
-				if (strpos($row["cf_952"], 'index.php') !== false) 
+	    	// print_r($row); die;
+	      //$url = $row["cf_916"];
+				if (strpos($row["cf_916"], 'index.php') !== false) 
 				{
-    					$url =  $row["cf_952"];
+    					$url =  $row["cf_916"];
 				}
 				else 
 				{
-					$url =  $row["cf_952"]."index.php";
+					$url =  $row["cf_916"]."index.php";
 
 				}
 
 	      $newurl = str_replace("index.php","",$url);
 	      $fpurl = "'$newurl/forgotPassword.php'";
 			$redirecturl = "'$url?modules=Users&view=Login&mailStatus=success'";	  
+				// echo $redirecturl; die;
 			 
 			  ?>
 			  <script src="//code.jquery.com/jquery.min.js"></script>
@@ -73,6 +75,10 @@ if (isset($_POST['form_submitted']))
  		  
 			  
 			  <?php 
+			  echo '<div style="color: green; text-align: center;">Please Check your email: '.$_POST['username'].' for reset instructions.</div>';
+			  sleep(10);
+		// header("Refresh: 10; URL=".$newurl);
+
                           
 	    }
 	}

@@ -41,7 +41,7 @@ if(isset($_POST['plan']))
     	<img class="img img-responsive" src="loading.gif" />
     </div>
     <div id="welcomeDiv" style="display:none;" class="answer_list" ></div>
-    <form class="login-form" id="login-form" style="display:block;" action="reception_signup.php">
+    <form class="login-form" id="login-form" style="display:block;" action="reception_signup.php" autocomplete="off">
         <input type="text" readonly placeholder="Plan" required name="plan" id="plan" value="<?php echo $_SESSION['plan']; ?>"  />
         <input type="text" placeholder="Company Name" required name="company_name" id="company_name" />
 	<input type="text" placeholder="First Name" value="<?= $user_info['name'] ?><?php echo $_SESSION['FULLNAME']; ?>" required name="firstname" id="firstname" />
@@ -50,7 +50,7 @@ if(isset($_POST['plan']))
         <input type="mobile" placeholder="Mobile Number" required name="mobile" id="mobile" /><div id="errmsg" style="color:red;"></div>
         <input type="email" placeholder="Email" required name="email" value="<?= $user_info['email'] ?> <?php echo $_SESSION['EMAIL']; ?>" id="email" />
         <!-- <div id="status"></div> -->
-        <!-- <div id="emailsuccess" style="color:green"></div> -->
+        <div id="emailsuccess" style="color:green"></div>
 	<div id="emailerror" style="color:red"></div>
 	<!-- <div id="status"></div> -->
 
@@ -116,56 +116,86 @@ $("#mobile").keypress(function (e)
 <script>
     $(document).ready(function(){
     // check change event of the text field
- //    $("#email").keyup(function()
-	// {
+    $("#email").focusout(function()
+	{
     
-	// 	$('span.error-keyup-7').remove();
-	// 	var inputVal = $(this).val();
-	// 	var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-	// 	if(!emailReg.test(inputVal)) 
-	// 	{
-	// 		$(this).after('<span class="error error-keyup-7" style="color:red">Invalid Email Format.</span>');
-	// 		document.getElementById("submit").disabled=true;
-	// 		$("#ptag").css("display","none");
+		$('span.error-keyup-7').remove();
+		var inputVal = $(this).val();
+		var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+		if(!emailReg.test(inputVal)) 
+		{
+			$(this).after('<span class="error error-keyup-7" style="color:red">Invalid Email Format.</span>');
+			document.getElementById("submit").disabled=true;
+			$("#ptag").css("display","none");
 
 			
-	// 	}
-	// 	else 
-	// 	{
-	// 		// get text username text field value
-	// 		var username = $("#email").val();
+		}
+		else 
+		{
+			// get text username text field value
+			var username = $("#email").val();
 			
-	// 		// check username name only if length is greater than or equal to 3
-	// 		if(username.length >= 3)
-	// 		{
-	// 		// check username
-	// 		$.post("email/emailverify.php", {username: username}, function(data, status)
-	// 		{
-	// 			if(data != "Email Address is valid.")
-	// 			{	
-	// 				document.getElementById("submit").disabled = true;
-	// 				$("#ptag").css("display","none");
-	// 				$("#emailerror").html(data);
-	// 				$("#emailsuccess").css("display","none");
-	// 				document.getElementById("emailsuccess").style.display = "none";
-	// 				console.log(data);
-	// 			}
-	// 			else
-	// 			{
-	// 				document.getElementById("submit").disabled=false;
-	// 				$("#ptag").css("display","block");
-	// 				document.getElementById("emailerror").style.display = "none";
-	// 				$("#emailsuccess").html(data);
-	// 				console.log(data);
+			// check username name only if length is greater than or equal to 3
+			if(username.length >= 3)
+			{
+			// check username
+			// $.post("email/emailverify.php", {username: username}, function(data, status)
+			// {
+			// 	if(data != "Email Address is valid.")
+			// 	{	
+			// 		document.getElementById("submit").disabled = true;
+			// 		$("#ptag").css("display","none");
+			// 		$("#emailerror").html(data);
+			// 		$("#emailsuccess").css("display","none");
+			// 		document.getElementById("emailsuccess").style.display = "none";
+			// 		console.log(data);
+			// 	}
+			// 	else
+			// 	{
+			// 		$.post("email/existingemailverify.php", {username: username}, function(data, status)
+			// 			{
+			// 				if (data != "NEW") {
+			// 					document.getElementById("submit").disabled = true;
+			// 					$("#ptag").css("display","none");
+			// 					$("#emailerror").html(data);
+			// 					$("#emailsuccess").css("display","none");
+			// 					document.getElementById("emailsuccess").style.display = "none";
+			// 					console.log(data);
+			// 				}else{
 
+			// 					document.getElementById("submit").disabled=false;
+			// 					$("#ptag").css("display","block");
+			// 					document.getElementById("emailerror").style.display = "none";
+			// 					$("#emailsuccess").html(data);
+			// 					console.log(data);
+			// 				}
+			// 			});
 
-	// 			}
+			// 	}
 				
-	// 		});
-	// 		}		
-	// 	}
+			// });
+			$.post("email/existingemailverify.php", {username: username}, function(data, status)
+						{
+							if (data != "NEW") {
+								document.getElementById("submit").disabled = true;
+								$("#ptag").css("display","none");
+								$("#emailerror").css("display","block");
+								$("#emailerror").html('<p>Email already registered</p>');
+								$("#emailsuccess").css("display","none");
+								document.getElementById("emailsuccess").style.display = "none";
+								console.log(data);
+							}else{
+								document.getElementById("submit").disabled=false;
+								$("#ptag").css("display","block");
+								document.getElementById("emailerror").style.display = "none";
+								// $("#emailsuccess").html(data);
+								console.log(data);
+							}
+						});
+			}		
+		}
 	
- //    });
+    });
     });
 </script>
 

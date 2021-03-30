@@ -8,7 +8,7 @@
 <body>
 <div class="login-page">
   <div class="form" >
-    <img class="img-responsive user-logo" src="https://internal.rightchoice.io/layouts/v7/resources/Images/vtiger.png">
+    <img class="img-responsive user-logo" src="https://dev.rightchoice.io/layouts/v7/resources/Images/vtiger.png">
     <!-- form class="register-form">
            <input type="password" placeholder="password"/>
       <input type="text" placeholder="email address"/>
@@ -241,7 +241,7 @@ box-shadow: 0px 1px 0px 1px #011c32;
 </script>
 <footer class="app-footer">
   <p>
-    Powered by RightChoice - &nbsp;&nbsp;© 2020&nbsp;&nbsp;|
+    Powered by RightChoice - &nbsp;&nbsp;&copy; <?= date('Y')?>&nbsp;&nbsp;|
     <a href="http://internal.rightchoice.io" target="_blank">RightChoice</a>&nbsp;|&nbsp;
     <a href="#" target="_blank">Privacy Policy</a>
   </p>

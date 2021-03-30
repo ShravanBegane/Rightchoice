@@ -43,11 +43,11 @@ $HELPDESK_SUPPORT_EMAIL_REPLY_ID = $HELPDESK_SUPPORT_EMAIL_ID;
       db_password
       db_name
 */
-
+// echo "G haa";
 $dbconfig['db_server'] = 'localhost';
 $dbconfig['db_port'] = ':3306';
-$dbconfig['db_username'] = 'comx';
-$dbconfig['db_password'] = 'password';
+$dbconfig['db_username'] = 'root';
+$dbconfig['db_password'] = '';
 $dbconfig['db_name'] = 'internal_my360crm_com';
 $dbconfig['db_type'] = 'mysqli';
 $dbconfig['db_status'] = 'true';
@@ -100,6 +100,12 @@ $api_urls = [
 **/
 
 
+//Face Recognisation URL
+
+$face_url = 'http://faceserver.rightchoice.io/';
+
+
+
 /**
 * PG Settings
 * Turn it to live when ready for production
@@ -126,12 +132,12 @@ $temp_storage['post_data'] = 'Hi';
 $crm_base_url = 'https://dev-reception.rightchoice.io/';
 
 
-$site_URL = 'https://dev.rightchoice.io/';
+$site_URL = 'http://localhost/rightchoice/internalcrm/';
 #$site_URL = 'https://internal.rightchoice.io/';
 // url for customer portal (Example: http://vtiger.com/portal)
 $PORTAL_URL = $site_URL.'/customerportal';
 // root directory path
-$root_directory = '/var/www/html/';
+$root_directory = 'C:\xampp\htdocs/rightchoice/internalcrm/';
 
 
 // $internal_url = 'http://dev.rightchoice.io/';

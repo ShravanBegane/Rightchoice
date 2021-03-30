@@ -35,7 +35,7 @@
         <input type="password" placeholder="password" required type="password" name="password" id="password"/>
        <button id="submit" type="submit" name="form_submitted" class="btn btn-success login_comx1">Log In</button><br/><br/>
         <button id="button" type="button" name="submit" class="login_comx2" value="New to RightChoice? Create an account"><a href="https://rightchoice.io/pricing/" style="color:#000;text-decoration:none;">New to RightChoice? Create an account</a></button>
-	<button id="button" type="button" name="submit" class="login_comx2" value="Forgot password?"><a href="forgotpassword.php" style="color:#000;text-decoration:none;">Forgot password?</a></button>
+	<button id="button" type="button" name="submit" class="login_comx2" value="Forgot password?"><a href="forgotpassword.php" style="color:#000;text-decoration:none;">Forgot password??</a></button>
 
     </form>
   </div>

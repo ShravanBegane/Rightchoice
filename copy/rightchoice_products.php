@@ -1,3 +1,5 @@
+<?php include('../config.inc.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,7 +12,7 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<!-- <link rel="stylesheet" href="style.css"> -->
 
-	<link href="https://fonts.googleapis.com/css?family=Raleway|Muli|Titillium+Web&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans|Poppins|Raleway|Muli|Titillium+Web&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Odibee+Sans&display=swap" rel="stylesheet">
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 	<style>
@@ -34,7 +36,7 @@
 }
 
 section {
-    padding: 60px 0;
+    /*padding: 60px 0;*/
 }
 
 section .section-title {
@@ -142,7 +144,7 @@ section .section-title {
 }
 
 .frontside .card .card-body img {
-    width: 180px;
+    width: 190px;
     height: 52px;
     /*border-radius: 50%;*/
 }
@@ -169,6 +171,8 @@ section .section-title {
   position: relative;
   transition: 0.5s;
       padding: 1.5% 6%;
+      letter-spacing: 1px;
+      background: #139ad6;
 }
 
 .btn-know-more:after {
@@ -193,7 +197,8 @@ section .section-title {
 p.card-text {
     border: 1px solid #e6e0e0;
     min-height: 130px;
-    padding: 1% 3%;
+    padding: 1% 3%;    
+    font-family: 'Open Sans', sans-serif;
 }
 .card-text-onhover{
 	border: 1px solid red;
@@ -205,10 +210,57 @@ p.card-text {
     -moz-box-shadow: 25px 25px 30px 1px rgb(167, 169, 175);
     box-shadow: 25px 25px 30px 1px rgb(167, 169, 175);
     border: none;
-    cursor: pointer;
-    border-bottom: 2px solid #ff344a;
-    border-top: 2px solid #ff344a;
+    /*cursor: pointer;*/
+    border-bottom: 2px solid #263b80;
+    border-top: 2px solid #263b80;
 }
+
+.products-heading{
+    background: url(https://my360crm.com/wp-content/uploads/2019/04/accessbg1.gif?id=3126) !important;
+    height: 130px;
+    color: #fff;
+    margin-bottom: 50px;
+    background-position: center;
+}
+.products-heading h5{
+    color: #fff;
+    position: relative;
+    top: 35%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    letter-spacing: 1px;
+    /*text-decoration: underline;*/
+}
+    .underline {
+       text-decoration: none; 
+       position: relative; 
+     }   
+
+    .underline:after {
+        position: absolute;
+        content: '';
+        height: 1px;
+        bottom: 36px;
+        margin: 0 auto;
+        left: 0;
+        right: 0;
+        width: 22%;
+        background: #fdfdfd;
+          
+          /* optional animation */
+          -o-transition:.5s;
+          -ms-transition:.5s;
+        -moz-transition:.5s;
+        -webkit-transition:.5s;
+        transition:.5s;
+    }
+     
+
+     /* optional hover classes used with anmiation */
+   /*   .underline:hover:after {
+          width: 80%;
+          background: orange;
+    }*/
 
 	</style>
   </head>
@@ -216,8 +268,10 @@ p.card-text {
 
 <!-- Team -->
 <section id="team" class="pb-5">
-    <div class="container">
+    <div class="container-fluid products-heading underline">
         <h5 class="section-title h1">Right Choice Products</h5>
+    </div>
+    <div class="container">
         <div class="row">
             <!-- Team member -->
             <div class="col-xs-12 col-sm-6 col-md-4">
@@ -226,10 +280,12 @@ p.card-text {
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="resources/img/RIGHT-ACCESS.png" alt="card image"></p>
+                                    <p><a target="_blank" href="https://rightchoice.io/rightaccess/">
+                                    	<img class=" img-fluid" src="<?=$site_URL;?>copy/resources/img/RIGHT-ACCESS.png" alt="card image">
+                                    </a></p>
                                     <h4 class="card-title"></h4>
                                     <p class="card-text">Advanced Door Access Control with Rightaccess.</p>
-                                    <a href="#" class="btn btn-primary btn-sm btn-know-more">Signup</a>
+                                    <a target="_blank" href="https://rightchoice.io/rightaccess#access_plan_slab" class="btn btn-primary btn-sm btn-know-more">Signup</a>
                                 </div>
                             </div>
                         </div>
@@ -274,10 +330,12 @@ p.card-text {
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="resources/img/RIGHT-Clean.png" alt="card image"></p>
+                                    <p><a target="_blank" href="https://rightchoice.io/rightclean/">
+                                    	<img class=" img-fluid" src="<?=$site_URL;?>copy/resources/img/RIGHT-Clean.png" alt="card image">
+                                    </a></p>
                                     <h4 class="card-title"></h4>
                                     <p class="card-text">GPS & Mobile Attendance App.</p>
-                                    <a href="#" class="btn btn-primary btn-sm btn-know-more">Signup</a>
+                                    <a target="_blank" href="https://rightchoice.io/rightclean/#clean_plan_slab" class="btn btn-primary btn-sm btn-know-more">Signup</a>
                                 </div>
                             </div>
                         </div>
@@ -322,10 +380,12 @@ p.card-text {
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="resources/img/RIGHT-CRM.png" alt="card image"></p>
+                                    <p><a target="_blank" href="https://rightchoice.io/rightcapture/">
+                                    	<img class=" img-fluid" src="<?=$site_URL;?>copy/resources/img/RIGHT-CRM.png" alt="card image">
+                                    </a></p>
                                     <h4 class="card-title"></h4>
                                     <p class="card-text">Advanced Facial Recognition Technology.</p>
-                                    <a href="#" class="btn btn-primary btn-sm btn-know-more">Signup</a>
+                                    <a target="_blank" href="https://rightchoice.io/rightcapture/#capture_plan_slab" class="btn btn-primary btn-sm btn-know-more">Signup</a>
                                 </div>
                             </div>
                         </div>
@@ -370,10 +430,12 @@ p.card-text {
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="resources/img/RIGHT-SHIFT.png" alt="card image"></p>
+                                    <p><a target="_blank" href="https://rightchoice.io/rightshift/">
+                                    	<img class=" img-fluid" src="<?=$site_URL;?>copy/resources/img/RIGHT-SHIFT.png" alt="card image">
+                                    </a></p>
                                     <h4 class="card-title"></h4>
                                     <p class="card-text">Accurate and reliable time and attendance with RightShift.</p>
-                                    <a href="#" class="btn btn-primary btn-sm btn-know-more">Signup</a>
+                                    <a target="_blank" href="https://rightchoice.io/rightshift/#shift_plan_slab" class="btn btn-primary btn-sm btn-know-more">Signup</a>
                                 </div>
                             </div>
                         </div>
@@ -418,10 +480,12 @@ p.card-text {
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="resources/img/RIGHT-RECEPTIONS.png" alt="card image"></p>
+                                    <p><a target="_blank" href="https://rightchoice.io/rightreception/">
+                                    	<img class=" img-fluid" src="<?=$site_URL;?>copy/resources/img/RIGHT-RECEPTIONS.png" alt="card image" style="width: 250px">
+                                    </a></p>
                                     <h4 class="card-title"></h4>
                                     <p class="card-text">RightReception is Digital Reception Services, Simple, Safe and Secure Visitor Management System from the Front Desk.</p>
-                                    <a href="#" class="btn btn-primary btn-sm btn-know-more">Signup</a>
+                                    <a target="_blank" href="https://rightchoice.io/rightreception#reception_plan_slab" class="btn btn-primary btn-sm btn-know-more">Signup</a>
                                 </div>
                             </div>
                         </div>
@@ -466,10 +530,12 @@ p.card-text {
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="resources/img/RIGHT-FACE.png" alt="card image"></p>
+                                    <p><a target="_blank" href="https://rightchoice.io/rightface/">
+                                    	<img class=" img-fluid" src="<?=$site_URL;?>copy/resources/img/RIGHT-FACE.png" alt="card image">
+                                    </a></p>
                                     <h4 class="card-title"></h4>
                                     <p class="card-text">Stay Organized with RightFace.</p>
-                                    <a href="#" class="btn btn-primary btn-sm btn-know-more">Signup</a>
+                                    <a target="_blank" href="https://rightchoice.io/rightface/#face_plan_slab" class="btn btn-primary btn-sm btn-know-more">Signup</a>
                                 </div>
                             </div>
                         </div>
@@ -513,10 +579,12 @@ p.card-text {
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="resources/img/RIGHT-Campaign.png" alt="card image"></p>
+                                    <p><a target="_blank" href="https://rightchoice.io/rightcampaign/">
+                                    	<img class=" img-fluid" src="<?=$site_URL;?>copy/resources/img/RIGHT-Campaign.png" alt="card image" style="width: 240px">
+                                    </a></p>
                                     <h4 class="card-title"></h4>
                                     <p class="card-text">SMS, Video, Email and Mobile Messaging App All-in-one platform everything you need to get start.</p>
-                                    <a href="#" class="btn btn-primary btn-sm btn-know-more">Signup</a>
+                                    <a target="_blank" href="https://rightchoice.io/rightcampaign/#campaign_plan" class="btn btn-primary btn-sm btn-know-more">Signup</a>
                                 </div>
                             </div>
                         </div>
@@ -554,13 +622,13 @@ p.card-text {
                 </div>
             </div>
              <!-- ./Team member -->
-            <div class="col-xs-12 col-sm-6 col-md-4">
+            <!-- <div class="col-xs-12 col-sm-6 col-md-4">
                 <div>
                     <div class="mainflip">
                         <div class="frontside">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <p><img class=" img-fluid" src="resources/img/RIGHT--Register.jpg" alt="card image"></p>
+                                    <p><img class=" img-fluid" src="<?=$site_URL;?>copy/resources/img/RIGHT--Register.jpg" alt="card image"></p>
                                     <h4 class="card-title"></h4>
                                     <p class="card-text">SMS, Video, Email and Mobile Messaging App All-in-one platform everything you need to get start.</p>
                                     <a href="#" class="btn btn-primary btn-sm btn-know-more">Signup</a>
@@ -599,7 +667,7 @@ p.card-text {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </section>
